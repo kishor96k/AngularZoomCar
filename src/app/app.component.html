@@ -1,0 +1,117 @@
+<nav class="navbar navbar-expand-lg navbar-secondary">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">
+            <img id="logoSize" src="https://www.zoomcar.com/blog/wp-content/uploads/2020/03/footer-logo.png" alt=""
+                class="d-inline-block align-text-top">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item text-white" >
+                    <a routerLink="/cars" class="nav-link text-white">Cars</a>
+                </li>
+                <!-- 
+                <p>commented because no data so ui is not working properly</p>
+                    <li class="nav-item text-white" *ngIf="isloggedUser.userRole=='CarOwner'">
+                    <a routerLink="/cars" class="nav-link text-white">Cars</a>
+                </li> -->
+            </ul>
+            <form class="d-flex" *ngIf="isloggedUser">
+                <button class="btn btn-outline-primary round-button mx-2" type="button">{{isloggedUser.email}}</button>
+                <button class="btn btn-success round-button" type="button" (click)="onLogOut()">LogOut</button>
+            </form>
+            <form class="d-flex" *ngIf="!isloggedUser">
+                <button class="btn btn-outline-primary round-button mx-2" (click)="onLoginOpen()"
+                    type="button">Login</button>
+                <button class="btn btn-success round-button" type="button" (click)="onRegisterOpen()">Register</button>
+            </form>
+
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid pt-3">
+    <router-outlet></router-outlet>
+</div>
+<!-- register modal -->
+<div class="modal" id="registerModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="registerModalLabel">REGISTER</h1>
+                <button type="button" (click)="onRegisterClose()" data-bs-dismiss="modal" aria-label="Close"
+                    class="btn-close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row ">
+                    <div class="row">
+                        <div class="col">
+                            <label for="" class="form-label">Name</label>
+                            <input type="text" [(ngModel)]="registerObj.name" class="form-control">
+                        </div>
+                        <div class="col">
+                            <label for="" class="form-label">Email</label>
+                            <input type="email" [(ngModel)]="registerObj.email" class="form-control">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label for="">Role</label>
+                            <select [(ngModel)]="registerObj.email" class="form-control">
+                                <option value="">Select Your role</option>
+                                <option value="Customer">Customer</option>
+                                <option value="CarOwner">CarOwner</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label for="" class="form-label">Password</label>
+                            <input type="password" [(ngModel)]="registerObj.password" class="form-control">
+                        </div>
+                        <div class="col">
+                            <label for="" class="form-label">Mobile No</label>
+                            <input type="number" [(ngModel)]="registerObj.mobileNo" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" (click)="registerUser()" class="btn btn-primary">Register</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- login modal -->
+<div class="modal" id="loginModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="loginModalLabel">LOGIN</h1>
+                <button type="button" (click)="onLoginClose()" data-bs-dismiss="modal" aria-label="Close"
+                    class="btn-close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col">
+                        <label for="" class="form-label">Email</label>
+                        <input type="email" [(ngModel)]="loginObj.email" class="form-control">
+                    </div>
+                    <div class="col">
+                        <label for="" class="form-label">Password</label>
+                        <input type="password" [(ngModel)]="loginObj.password" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" (click)="loginUser()" class="btn btn-primary">Login</button>
+            </div>
+        </div>
+    </div>
+</div>

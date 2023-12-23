@@ -1,0 +1,29 @@
+<div id="booking">
+    <form id="form">
+        <select name="fromLocation" id="fromLocation" class="form-control" [(ngModel)]="fromLocation">
+            <option value="">Pick Up Address</option>
+            <option *ngFor="let item of locationList" [value]="item.locationId">{{item.title}}</option>
+        </select>
+        <select name="toLocation" id="toLocation" class="form-control" [(ngModel)]="toLocation">
+            <option value="">Drop Address</option>
+            <option *ngFor="let item of locationList" [value]="item.locationId">{{item.title}}</option>
+        </select>
+        <div>
+            <button id="primaryButton" type="button" (click)="navigateToSearch()">FIND CARS</button>
+        </div>
+    </form>
+</div>
+<div class="row">
+    <div class="col-12 text-center">
+        <h3>POPULAR CARS IN NAGPUR</h3>
+    </div>
+</div>
+
+
+<div class="container car-list-home-container">
+    <div class="row car-list-home">
+        <div class="col-3" *ngFor="let item of carList">
+            <app-carscard [CarData]="item"></app-carscard>
+        </div>
+    </div>
+</div>

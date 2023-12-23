@@ -1,0 +1,111 @@
+<div class="row">
+    <div class="col-12 text-end">
+        <button class="btn btn-success btn-sm" (click)="onCarsOpen()">Add</button>
+    </div>
+</div>
+<div class="container car-list-home-container">
+    <div class="row car-list-home">
+        <div class="col-3" *ngFor="let item of carList">
+            <app-carscard [CarData]="item"></app-carscard>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- login modal -->
+<div class="modal" id="carsModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="carsModalLabel">AddCar</h1>
+                <button type="button" (click)="onCarsClose()" data-bs-dismiss="modal" aria-label="Close"
+                    class="btn-close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-7">
+                        <div class="row">
+                            <div class="col-4">
+                                <label for="" class="form-label">Brand</label>
+                                <input type="email" [(ngModel)]="Cars.brand" class="form-control">
+                            </div>
+                            <div class="col-8">
+                                <label for="" class="form-label">Model name</label>
+                                <input type="email" [(ngModel)]="Cars.name" class="form-control">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <label for="" class="form-label">Pricing</label>
+                                <input type="email" [(ngModel)]="Cars.pricing" class="form-control">
+                            </div>
+                            <div class="col-8">
+                                <label for="" class="form-label">Pricing Description </label>
+                                <input type="email" [(ngModel)]="Cars.pricingDescription" class="form-control">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="">Role</label>
+                                <select [(ngModel)]="Cars.locationId" class="form-control">
+                                    <option value="">Select Your role</option>
+                                    <option [value]="locations?.locationId" *ngFor=" let item of locations">
+                                        {{ item.title}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-8">
+                                <label for="" class="form-label">Image</label>
+                                <input type="text" [(ngModel)]="Cars.imageUrl" class="form-control">
+                            </div>
+                            <div class="col-4">
+                                <label for="" class="form-label">vehicleNo </label>
+                                <input type="email" [(ngModel)]="Cars.vehicleNo" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-5">
+                        <div class="row">
+                            <div class="col-6">
+                                <label for="">Title</label>
+                                <input type="text" [(ngModel)]="CarAccessoriess.accessoriesTitle" class="form-control"
+                                    name="" id="">
+                            </div>
+                            <div class="col-3">
+                                <label for="">Checked</label>
+                                <input type="checkbox" [(ngModel)]="CarAccessoriess.showOnWebsite" name="" id="">
+                            </div>
+                            <div class="col-3">
+                                <button class="btn btn-sm btn-info" (click)="addCarAccessoriess()">Add</button>
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-12">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <th>Sr.No</th>
+                                        <th>Title</th>
+                                        <th>Checked</th>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let item of Cars.ZoomCarAccessoriess;let sr=index;">
+                                            <td>{{sr+1}}</td>
+                                            <td>{{item.accessoriesTitle}}</td>
+                                            <td>{{item.showOnWebsite ? 'YES':'NO'}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" (click)="addNewCar()" class="btn btn-primary">AddCar</button>
+            </div>
+        </div>
+    </div>
+</div>
